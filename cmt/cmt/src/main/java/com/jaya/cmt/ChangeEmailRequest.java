@@ -1,42 +1,32 @@
 package com.jaya.cmt;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
+/**
+ * Request object for email change operation.
+ * Validates current email, new email, and confirmation email.
+ */
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class ChangeEmailRequest {
-	@Id
+    
+    @NotBlank(message = "User ID is mandatory")
     private Integer userId;
+    
+    @Email(message = "Please provide a valid current email address")
+    @NotBlank(message = "Current email is mandatory")
     private String currentEmail;
+    
+    @Email(message = "Please provide a valid new email address")
+    @NotBlank(message = "New email is mandatory")
     private String newEmail;
+    
+    @Email(message = "Please provide a valid confirmation email address")
+    @NotBlank(message = "Confirmation email is mandatory")
     private String confirmEmail;
-	public Integer getUserId() {
-		return userId;
-	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-	public String getCurrentEmail() {
-		return currentEmail;
-	}
-	public void setCurrentEmail(String currentEmail) {
-		this.currentEmail = currentEmail;
-	}
-	public String getNewEmail() {
-		return newEmail;
-	}
-	public void setNewEmail(String newEmail) {
-		this.newEmail = newEmail;
-	}
-	public String getConfirmEmail() {
-		return confirmEmail;
-	}
-	public void setConfirmEmail(String confirmEmail) {
-		this.confirmEmail = confirmEmail;
-	}
-
 }
